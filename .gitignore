@@ -1,0 +1,13 @@
+# Bỏ qua toàn bộ thư mục data
+/data/*
+
+# Mở lại chỉ thư mục positions
+!/data/scenarios/
+/data/scenarios/*
+!/data/scenarios/constellation-leo-vnu/
+/data/scenarios/constellation-leo-vnu/*
+!/data/scenarios/constellation-leo-vnu/positions/
+
+# (Tuỳ chọn: Nếu có file nhị phân/thực thi không muốn đưa lên github)
+*.o
+*.so
