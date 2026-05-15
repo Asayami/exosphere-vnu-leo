@@ -21,6 +21,7 @@
 #include <map>
 #include <set>
 #include <string>
+#include <unistd.h>
 
 using namespace ns3;
 
@@ -615,7 +616,11 @@ InitMetricsLog()
         return;
     }
 
-    std::string filePath = "/home/osboxes/VNU-LEO/vnu-leo/output/log.csv";
+    char cwd[1024];
+    std::string pwd = (getcwd(cwd, sizeof(cwd)) != NULL) ? std::string(cwd) : ".";
+    std::string projectPath = pwd + "/../exosphere-vnu-leo";
+    std::string filePath = projectPath + "/output/log.csv";
+    
     g_metricsStream.open(filePath.c_str(), std::ios::out);
     g_metricsStream.setf(std::ios::fixed);
     // CSV Header: time, node info, handover tracking (sat/beam changes), loss indicators (SINR/C/N), traffic bytes
@@ -702,9 +707,15 @@ int main(int argc, char* argv[])
     cmd.AddValue("metricsInterval", "Interval for link metrics logging", metricsInterval);
     cmd.Parse(argc, argv);
 
+    // Sử dụng thư mục hiện tại (tại thời điểm chạy lệnh thường là ns-3 root)
+    char cwd[1024];
+    std::string pwd = (getcwd(cwd, sizeof(cwd)) != NULL) ? std::string(cwd) : ".";
+    // Thêm "/../exosphere-vnu-leo" để link động vào folder dự án
+    std::string projectPath = pwd + "/../exosphere-vnu-leo";
+
     Config::SetDefault("ns3::SatEnvVariables::DataPath",
-                       StringValue("/home/osboxes/VNU-LEO/vnu-leo/data"));
-    Singleton<SatEnvVariables>::Get()->SetOutputPath("/home/osboxes/VNU-LEO/vnu-leo/output");
+                       StringValue(projectPath + "/data"));
+    Singleton<SatEnvVariables>::Get()->SetOutputPath(projectPath + "/output");
 
     /// Set how satellite handle packet from GW/UT (corresponding to layers 1, 2, and 3 network)
     Config::SetDefault("ns3::SatConf::ForwardLinkRegenerationMode",
@@ -760,7 +771,7 @@ int main(int argc, char* argv[])
     simulationHelper->LoadScenario(scenarioName);
 
     // to prevent automatic creation of UTs from file since we will add them as disconnected later
-    g_utPositionsFilePath = "/home/osboxes/VNU-LEO/vnu-leo/data/scenarios/constellation-leo-vnu/positions/ut_positions.txt";
+    g_utPositionsFilePath = projectPath + "/data/scenarios/constellation-leo-vnu/positions/ut_positions.txt";
     simulationHelper->EnableUtListPositionsFromInputFile(g_utPositionsFilePath, false);
 
     simulationHelper->CreateSatScenario(SatHelper::NONE);

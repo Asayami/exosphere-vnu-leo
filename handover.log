@@ -334,25 +334,25 @@ UT users
 ==================
 
 [INFO] FlowMonitor installed on ALL nodes
-[PROGRESS] t=5s real=6.3e-06s currentEventAmount=0+1023147 ev_amt_per_sec=2.05e+05 real_per_sim=1.26e-06 | LBTrace: 652 calls, 27 throttled, 4.4ms total, 0.006736ms/call | Internal: 0%
-[PROGRESS] t=1e+01s real=1.01s currentEventAmount=1023147+1022761 ev_amt_per_sec=2.05e+05 real_per_sim=0.101 | LBTrace: 686 calls, 39 throttled, 4.6ms total, 0.006639ms/call | Internal: 1e+02%
-[PROGRESS] t=2e+01s real=2.18s currentEventAmount=2045908+1170880 ev_amt_per_sec=2.34e+05 real_per_sim=0.146 | LBTrace: 735 calls, 40 throttled, 4.5ms total, 0.006088ms/call | Internal: 1e+02%
-[PROGRESS] t=2e+01s real=3.53s currentEventAmount=3216788+1336835 ev_amt_per_sec=2.67e+05 real_per_sim=0.176 | LBTrace: 790 calls, 42 throttled, 5.1ms total, 0.006415ms/call | Internal: 1e+02%
-[PROGRESS] t=2e+01s real=4.59s currentEventAmount=4553623+1023146 ev_amt_per_sec=2.05e+05 real_per_sim=0.184 | LBTrace: 680 calls, 39 throttled, 4.8ms total, 0.007013ms/call | Internal: 1e+02%
-[PROGRESS] t=3e+01s real=5.65s currentEventAmount=5576769+1023239 ev_amt_per_sec=2.05e+05 real_per_sim=0.188 | LBTrace: 682 calls, 40 throttled, 4.9ms total, 0.007249ms/call | Internal: 1e+02%
-[PROGRESS] t=4e+01s real=6.69s currentEventAmount=6600008+1023096 ev_amt_per_sec=2.05e+05 real_per_sim=0.191 | LBTrace: 683 calls, 39 throttled, 5.1ms total, 0.007511ms/call | Internal: 1e+02%
-[PROGRESS] t=4e+01s real=7.72s currentEventAmount=7623104+1023101 ev_amt_per_sec=2.05e+05 real_per_sim=0.193 | LBTrace: 680 calls, 40 throttled, 4.9ms total, 0.007194ms/call | Internal: 1e+02%
-[PROGRESS] t=4e+01s real=8.77s currentEventAmount=8646205+1023104 ev_amt_per_sec=2.05e+05 real_per_sim=0.195 | LBTrace: 684 calls, 40 throttled, 5ms total, 0.007338ms/call | Internal: 1e+02%
-[PROGRESS] t=5e+01s real=9.76s currentEventAmount=9669309+1023105 ev_amt_per_sec=2.05e+05 real_per_sim=0.195 | LBTrace: 687 calls, 40 throttled, 4.7ms total, 0.006813ms/call | Internal: 1e+02%
-[PROGRESS] t=6e+01s real=10.6s currentEventAmount=10692414+747064 ev_amt_per_sec=1.49e+05 real_per_sim=0.192 | LBTrace: 599 calls, 40 throttled, 4.7ms total, 0.007765ms/call | Internal: 1e+02%
-[PROGRESS] t=6e+01s real=11.3s currentEventAmount=11439478+702626 ev_amt_per_sec=1.41e+05 real_per_sim=0.188 | LBTrace: 580 calls, 40 throttled, 4.6ms total, 0.007988ms/call | Internal: 1e+02%
-[PROGRESS] t=6e+01s real=12s currentEventAmount=12142104+702496 ev_amt_per_sec=1.4e+05 real_per_sim=0.185 | LBTrace: 583 calls, 40 throttled, 4ms total, 0.00681ms/call | Internal: 1e+02%
-[PROGRESS] t=7e+01s real=12.7s currentEventAmount=12844600+702476 ev_amt_per_sec=1.4e+05 real_per_sim=0.182 | LBTrace: 580 calls, 40 throttled, 5.4ms total, 0.009372ms/call | Internal: 1e+02%
-[PROGRESS] t=8e+01s real=13.5s currentEventAmount=13547076+702476 ev_amt_per_sec=1.4e+05 real_per_sim=0.179 | LBTrace: 580 calls, 40 throttled, 4.1ms total, 0.007079ms/call | Internal: 1e+02%
-[PROGRESS] t=8e+01s real=14.2s currentEventAmount=14249552+702475 ev_amt_per_sec=1.4e+05 real_per_sim=0.177 | LBTrace: 580 calls, 40 throttled, 4.8ms total, 0.00831ms/call | Internal: 1e+02%
-[PROGRESS] t=8e+01s real=14.9s currentEventAmount=14952027+702473 ev_amt_per_sec=1.4e+05 real_per_sim=0.176 | LBTrace: 580 calls, 40 throttled, 4.6ms total, 0.007911ms/call | Internal: 1e+02%
-[PROGRESS] t=9e+01s real=15.7s currentEventAmount=15654500+702475 ev_amt_per_sec=1.4e+05 real_per_sim=0.175 | LBTrace: 580 calls, 40 throttled, 5.1ms total, 0.008875ms/call | Internal: 1e+02%
-[PROGRESS] t=1e+02s real=16.5s currentEventAmount=16356975+702476 ev_amt_per_sec=1.4e+05 real_per_sim=0.174 | LBTrace: 580 calls, 40 throttled, 4.6ms total, 0.007927ms/call | Internal: 1e+02%
+[PROGRESS] t=5s real=9.3e-06s currentEventAmount=0+1023147 ev_amt_per_sec=2.05e+05 real_per_sim=1.86e-06 | LBTrace: 652 calls, 27 throttled, 4.3ms total, 0.006647ms/call | Internal: 0%
+[PROGRESS] t=1e+01s real=1.09s currentEventAmount=1023147+1022761 ev_amt_per_sec=2.05e+05 real_per_sim=0.109 | LBTrace: 686 calls, 39 throttled, 4.2ms total, 0.006089ms/call | Internal: 1e+02%
+[PROGRESS] t=2e+01s real=2.39s currentEventAmount=2045908+1170880 ev_amt_per_sec=2.34e+05 real_per_sim=0.159 | LBTrace: 735 calls, 40 throttled, 4.5ms total, 0.006174ms/call | Internal: 1e+02%
+[PROGRESS] t=2e+01s real=3.77s currentEventAmount=3216788+1336835 ev_amt_per_sec=2.67e+05 real_per_sim=0.189 | LBTrace: 790 calls, 42 throttled, 4.3ms total, 0.005477ms/call | Internal: 1e+02%
+[PROGRESS] t=2e+01s real=4.83s currentEventAmount=4553623+1023146 ev_amt_per_sec=2.05e+05 real_per_sim=0.193 | LBTrace: 680 calls, 39 throttled, 4.3ms total, 0.006295ms/call | Internal: 1e+02%
+[PROGRESS] t=3e+01s real=5.89s currentEventAmount=5576769+1023239 ev_amt_per_sec=2.05e+05 real_per_sim=0.196 | LBTrace: 682 calls, 40 throttled, 4.8ms total, 0.007088ms/call | Internal: 1e+02%
+[PROGRESS] t=4e+01s real=6.97s currentEventAmount=6600008+1023096 ev_amt_per_sec=2.05e+05 real_per_sim=0.199 | LBTrace: 683 calls, 39 throttled, 4.1ms total, 0.006071ms/call | Internal: 1e+02%
+[PROGRESS] t=4e+01s real=8.06s currentEventAmount=7623104+1023101 ev_amt_per_sec=2.05e+05 real_per_sim=0.202 | LBTrace: 680 calls, 40 throttled, 4.1ms total, 0.005963ms/call | Internal: 1e+02%
+[PROGRESS] t=4e+01s real=9.21s currentEventAmount=8646205+1023104 ev_amt_per_sec=2.05e+05 real_per_sim=0.205 | LBTrace: 684 calls, 40 throttled, 4.5ms total, 0.00663ms/call | Internal: 1e+02%
+[PROGRESS] t=5e+01s real=10.3s currentEventAmount=9669309+1023105 ev_amt_per_sec=2.05e+05 real_per_sim=0.206 | LBTrace: 687 calls, 40 throttled, 4.2ms total, 0.00613ms/call | Internal: 1e+02%
+[PROGRESS] t=6e+01s real=11.1s currentEventAmount=10692414+747064 ev_amt_per_sec=1.49e+05 real_per_sim=0.202 | LBTrace: 599 calls, 40 throttled, 4.6ms total, 0.007755ms/call | Internal: 1e+02%
+[PROGRESS] t=6e+01s real=11.8s currentEventAmount=11439478+702626 ev_amt_per_sec=1.41e+05 real_per_sim=0.197 | LBTrace: 580 calls, 40 throttled, 4.4ms total, 0.007659ms/call | Internal: 1e+02%
+[PROGRESS] t=6e+01s real=12.5s currentEventAmount=12142104+702496 ev_amt_per_sec=1.4e+05 real_per_sim=0.193 | LBTrace: 583 calls, 40 throttled, 4.2ms total, 0.007192ms/call | Internal: 1e+02%
+[PROGRESS] t=7e+01s real=13.2s currentEventAmount=12844600+702476 ev_amt_per_sec=1.4e+05 real_per_sim=0.189 | LBTrace: 580 calls, 40 throttled, 3.5ms total, 0.006021ms/call | Internal: 1e+02%
+[PROGRESS] t=8e+01s real=13.9s currentEventAmount=13547076+702476 ev_amt_per_sec=1.4e+05 real_per_sim=0.186 | LBTrace: 580 calls, 40 throttled, 4.6ms total, 0.007964ms/call | Internal: 1e+02%
+[PROGRESS] t=8e+01s real=14.6s currentEventAmount=14249552+702475 ev_amt_per_sec=1.4e+05 real_per_sim=0.183 | LBTrace: 580 calls, 40 throttled, 4.5ms total, 0.007723ms/call | Internal: 1e+02%
+[PROGRESS] t=8e+01s real=15.4s currentEventAmount=14952027+702473 ev_amt_per_sec=1.4e+05 real_per_sim=0.181 | LBTrace: 580 calls, 40 throttled, 4.7ms total, 0.008023ms/call | Internal: 1e+02%
+[PROGRESS] t=9e+01s real=16.1s currentEventAmount=15654500+702475 ev_amt_per_sec=1.4e+05 real_per_sim=0.179 | LBTrace: 580 calls, 40 throttled, 4.5ms total, 0.007783ms/call | Internal: 1e+02%
+[PROGRESS] t=1e+02s real=16.8s currentEventAmount=16356975+702476 ev_amt_per_sec=1.4e+05 real_per_sim=0.177 | LBTrace: 580 calls, 40 throttled, 4.1ms total, 0.007111ms/call | Internal: 1e+02%
 [INFO] FlowMonitor captured 8 flows
 [FLOW] 90.3.0.2 -> 10.1.0.2: 98 packets, 2940 bytes
 [FLOW] 90.3.0.2 -> 10.2.0.2: 98 packets, 2940 bytes
