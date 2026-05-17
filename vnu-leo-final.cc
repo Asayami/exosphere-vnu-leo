@@ -67,7 +67,7 @@ static std::string g_utPositionsFilePath;
 
 // Log every 500ms as required for web dashboard
 static std::map<uint32_t, Time> g_lastProcessedTime;
-static Time g_throttleInterval = MilliSeconds(10);
+static Time g_throttleInterval = MilliSeconds(0);
 
 // Global traffic byte counters per node (UT and GW) - accumulated from simulation start
 static std::map<uint32_t, uint64_t> g_utRxBytes;
@@ -269,6 +269,25 @@ GetGwIdFromNode(Ptr<Node> gwNode)
 
     const int32_t gwId = satIdMapper->GetGwIdWithMac(gwMac);
     return (gwId > 0) ? static_cast<uint32_t>(gwId) : 0;
+}
+
+uint32_t
+GetSatIdFromNode(Ptr<Node> satNode)
+{
+    if (!satNode)
+    {
+        return 0;
+    }
+
+    const SatIdMapper* satIdMapper = Singleton<SatIdMapper>::Get();
+    const Address satMac = satIdMapper->GetSatMacWithNode(satNode);
+    if (satMac.IsInvalid())
+    {
+        return 0;
+    }
+
+    const int32_t satId = satIdMapper->GetSatIdWithMac(satMac);
+    return (satId > 0) ? static_cast<uint32_t>(satId) : 0;
 }
 
 void
@@ -677,6 +696,33 @@ void ProgressReport()
     // Cleanup throttle map periodically to prevent memory growth
     g_lastProcessedTime.clear();
 
+    // Print satellite positions (lat, lon) for all satellites
+    const std::ios::fmtflags coutFlags = std::cout.flags();
+    const std::streamsize coutPrecision = std::cout.precision();
+    std::cout.setf(std::ios::fixed);
+    std::cout << std::setprecision(6);
+
+    NodeContainer sats = Singleton<SatTopology>::Get()->GetOrbiterNodes();
+    for (uint32_t i = 0; i < sats.GetN(); ++i)
+    {
+        Ptr<Node> satNode = sats.Get(i);
+        Ptr<SatMobilityModel> satMobility = satNode->GetObject<SatMobilityModel>();
+        if (!satMobility)
+        {
+            continue;
+        }
+
+        GeoCoordinate geo(satMobility->GetPosition());
+        uint32_t satId = GetSatIdFromNode(satNode);
+        std::cout << "[SAT_POS] sat_id=" << satId - 1
+                  << " lat=" << geo.GetLatitude()
+                  << " lon=" << geo.GetLongitude()
+                  << std::endl;
+    }
+
+    std::cout.flags(coutFlags);
+    std::cout.precision(coutPrecision);
+
     Simulator::Schedule(Seconds(5.0), &ProgressReport);
 }
 
@@ -723,14 +769,24 @@ int main(int argc, char* argv[])
     Config::SetDefault("ns3::SatConf::ReturnLinkRegenerationMode",
                        EnumValue(SatEnums::REGENERATION_NETWORK));
 
-    Config::SetDefault("ns3::SatOrbiterFeederPhy::QueueSize", UintegerValue(100));
+    // Frequency/bandwidth values from outputs/run_001/sns3_config_values.json
+    Config::SetDefault("ns3::SatConf::FwdFeederLinkBaseFrequency", DoubleValue(27.5e9));
+    Config::SetDefault("ns3::SatConf::FwdFeederLinkBandwidth", DoubleValue(2.0e9));
+    Config::SetDefault("ns3::SatConf::FwdUserLinkBaseFrequency", DoubleValue(19.7e9));
+    Config::SetDefault("ns3::SatConf::FwdUserLinkBandwidth", DoubleValue(5.0e8));
+    Config::SetDefault("ns3::SatConf::RtnUserLinkBaseFrequency", DoubleValue(29.5e9));
+    Config::SetDefault("ns3::SatConf::RtnUserLinkBandwidth", DoubleValue(5.0e8));
+    Config::SetDefault("ns3::SatConf::RtnFeederLinkBaseFrequency", DoubleValue(17.7e9));
+    Config::SetDefault("ns3::SatConf::RtnFeederLinkBandwidth", DoubleValue(2.0e9));
+
+    // Config::SetDefault("ns3::SatOrbiterFeederPhy::QueueSize", UintegerValue(100));
 
     Config::SetDefault("ns3::SatHelper::HandoversEnabled", BooleanValue(true));
     Config::SetDefault("ns3::SatHandoverModule::NumberClosestSats", UintegerValue(2));
     Config::SetDefault("ns3::SatSpotBeamPositionAllocator::MinElevationAngleInDegForUT",
-                       DoubleValue(10.0));
+                       DoubleValue(5.0));
     Config::SetDefault("ns3::SatAntennaGainPattern::MinAcceptableAntennaGainDb",
-                       DoubleValue(48.0));
+                       DoubleValue(10.0));
 
     Config::SetDefault("ns3::SatGwMac::DisableSchedulingIfNoDeviceConnected", BooleanValue(true));
     Config::SetDefault("ns3::SatOrbiterMac::DisableSchedulingIfNoDeviceConnected",
@@ -825,7 +881,7 @@ int main(int argc, char* argv[])
         {
             NodeContainer gwNode;
             gwNode.Add(gwUsers.Get(0));
-            Time cbrInterval = Seconds(1);
+            Time cbrInterval = Seconds(0.1);
             uint32_t packetSize = 2;
             uint64_t bps = static_cast<uint64_t>((packetSize * 8) / cbrInterval.GetSeconds());
             if (bps == 0)
@@ -841,7 +897,7 @@ int main(int argc, char* argv[])
                 Singleton<SatTopology>::Get()->GetUtUserNodes(),
                 "ns3::ConstantRandomVariable[Constant=1000]",
                 "ns3::ConstantRandomVariable[Constant=0]",
-                Seconds(1.0), // start time
+                Seconds(5.0), // start time
                 Seconds(simulationTime), // end time
                 Seconds(0));
         }
@@ -858,7 +914,7 @@ int main(int argc, char* argv[])
         {
             NodeContainer gwNode;
             gwNode.Add(gwUsers.Get(0));
-            Time cbrInterval = Seconds(1);
+            Time cbrInterval = Seconds(0.1);
             uint32_t packetSize = 2;
             uint64_t bps = static_cast<uint64_t>((packetSize * 8) / cbrInterval.GetSeconds());
             if (bps == 0)
@@ -874,7 +930,7 @@ int main(int argc, char* argv[])
                 Singleton<SatTopology>::Get()->GetUtUserNodes(),
                 "ns3::ConstantRandomVariable[Constant=1000]",
                 "ns3::ConstantRandomVariable[Constant=0]",
-                Seconds(1.0), // start time
+                Seconds(5.0), // start time
                 Seconds(simulationTime), // end time
                 Seconds(0.25));
         }
@@ -897,7 +953,7 @@ int main(int argc, char* argv[])
         std::cout << "[INFO] FlowMonitor NOT installed (no traffic enabled)" << std::endl;
     }
 
-    Config::SetDefault("ns3::SatPhyRxCarrierPerWindow::DetectionThreshold", DoubleValue(10.0));
+    //Config::SetDefault("ns3::SatPhyRxCarrierPerWindow::DetectionThreshold", DoubleValue(10.0));
 
     simulationHelper->RunSimulation();
 
